@@ -56,16 +56,16 @@ class ConfigurationManager:
 
     def get_prepare_callback_config(self) -> PrepareCallbacksConfig:
         config = self.config.prepare_callbacks
-        model_ckpt_dir = os.path.dirname(config.checkpoint_model_filepath)
+        model_ckpt_dir = os.path.dirname(str(config.checkpoint_model_filepath))
         create_directories([
-            Path(model_ckpt_dir),
-            Path(config.tensorboard_root_log_dir)
+            Path(str(model_ckpt_dir)),
+            Path(str(config.tensorboard_root_log_dir))
         ])
 
         prepare_callback_config = PrepareCallbacksConfig(
-            root_dir=Path(config.root_dir),
-            tensorboard_root_log_dir=Path(config.tensorboard_root_log_dir),
-            checkpoint_model_filepath=Path(config.checkpoint_model_filepath)
+            root_dir=Path(str(config.root_dir)),
+            tensorboard_root_log_dir=Path(str(config.tensorboard_root_log_dir)),
+            checkpoint_model_filepath=Path(str(config.checkpoint_model_filepath))
         )
 
         return prepare_callback_config
